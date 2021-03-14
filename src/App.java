@@ -1,28 +1,25 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import p1.MyClass;
+
 public class App {
 	public static void main(String [] args) {
 		
-		Book book1 = new Book();
-		book1.title = "Harry Potter";
-		book1.author = "JK Rowling";
-		book1.pages = 500;
-		book1.language = "English";
+		MyClass myClass = new MyClass(); //from different package
+
+	} 
 		
-		Book book2 = new Book();
-		book2.title = "The 4 hour workweek";
-		book2.author = "Tim Ferriss";
-		book2.pages = 200 ;
-		book2.language = "English";
-		
-		
-		System.out.println(book1.title);
-		System.out.println(book2.pages);
+	public void sayNonStaticHi(String name) {
+		System.out.println("Hello " + name);
 	}
-		
-
-
+	
+	public static void nonStaticMethod() {
+		//sayHi of above Function sayNonStaticHi
+		App myApp = new App();
+		myApp.sayNonStaticHi("Sai Ganesh");
+	}
+	
 	public static void helloWorld() {
 		System.out.println("Hello World \n");
 	}
@@ -144,6 +141,7 @@ public class App {
 		System.out.println("Roses are " + color + "\n"
 						+ pluralNoun + " are blue \n"
 						+ "I love " + celebrity);
+		
 	}
 	
 	
@@ -436,7 +434,7 @@ public class App {
 	}
 	
 	
-	
+/*
 	public static void studentClass() {
 		Student myStudent = new Student();
 		myStudent.firstName = "Jim";
@@ -454,7 +452,152 @@ public class App {
 		myStudent2.age = 22;
 		myStudent2.onProbation = true;
 		
-		System.out.println(myStudent2.firstName);
+		System.out.println(myStudent2.firstName);		
+		
+	}
+*/
+	public static void constructorMethod() {
+		
+		//Check book.java
+		
+		Book book1 = new Book("Harry Potter", "JK Rowling", 500, "English");
+		
+		Book book2 = new Book("The 4 hour workweek", "Tim Ferriss", 200, "English");
+		
+		System.out.println(book1.title);
+		System.out.println(book2.pages);
+	}
+	
+	
+	public static void takeTest(Question [] questions) {
+		int score = 0;
+		Scanner keyboardInput = new Scanner(System.in);
+		for(int i = 0; i < questions.length; i++) {
+			System.out.println(questions[i].prompt);
+			String answer = keyboardInput.nextLine();
+			if(answer.equals(questions[i].answer)) {
+				score++;
+			}
+			
+		} System.out.println("You got " + score + "/" + questions.length);
+		
+	}
+	
+	public static void mcqTest() {
+		
+		//Check Question.java
+		
+		String q1 = "What color are apples?\n" 
+		+ "(a)red/green\n(b)Orange\n(c)Magenta\n";
+		
+		String q2 = "What color are bananas?\n" 
+		+ "(a)red/green\n(b)Yellow\n(c)Blue\n";
+
+		Question [] questions = {
+				new Question(q1, "a"),
+				new Question(q2, "b")
+		};
+		takeTest(questions);
+	}
+	
+	public static void objectInstanceMethod() {
+		Student myStudent = new Student("Ganesh", "Mechanical Engineering", 3.6);
+		
+		System.out.println(myStudent.isOnHonorRoll()); //cjeck student class for the isOnHonorRoll method 
+	}
+	
+	public static void settersAndGetters() {
+		
+		//check Movie.java
+		
+		
+		Movie movie1 = new Movie("The Avengers", "Joss Whedon", "PG-13");
+		Movie movie2 = new Movie("Step Brothers", "Adam McKay", "R");
+		
+		
+		// movie1.ageRating = "Dog"; not possible anymore as private
+		System.out.println(movie1.getRating());
+		System.out.println(movie2.getDirector());
+		System.out.println(movie1.getTitle());
+	}
+	
+	public static void staticAttribute() {
+		
+		//check Song.java
+		
+		
+		Song holiday = new Song("Holiday", "Green Day", 200);
+		Song americanIdiot = new Song("American Idiot", "Green Day", 168);
+		
+		//System.out.println(holiday.getArtist());
+		//System.out.println(americanIdiot.getLength());
+		
+		System.out.println(holiday.getSongsCount()); //at this time there are ald 2 songs
+		System.out.println(americanIdiot.getSongsCount()); // different instances but same attribute
+		// that is the purpose of static
+		
+		Song africa = new Song("Africa", "Toto", 300);
+		
+		System.out.println(holiday.getSongsCount()); //at this time there are ald 3 songs
+		System.out.println(americanIdiot.getSongsCount()); // different instances but same attribute
+		// that is the purpose of static
+		System.out.println(africa.getSongsCount()); 
+	}
+	
+	public static void staticMethods() {
+		
+		//check Prints.java
+		
+		int x = Prints.feetInMile;
+		System.out.println(x);
+		
+		Prints.sayGoodbye();
+		
+	}
+	
+	public static void Inheritance() {
+		//Inheritance
+		
+		Chef normalChef = new Chef(); 
+		normalChef.makeSpecialDish(); 
+		
+		//Just a point i noted that if the makeChicken method was static the 2 lines above can be just 1 line
+		// Chef.makeChicken(); //this is if the method was static. and 1 line can get the same output
+		
+		ItalianChef italianChef = new ItalianChef(); 
+		italianChef.makeSpecialDish(); 
+		
+		ChineseChef chineseChef = new ChineseChef();
+		chineseChef.makeSalad();
+	}
+	
+	public static void interfaceInheritance() {
+		
+		Animal [] animals = {
+				new Cow(), 
+				new Dog(),
+				new Bird()
+		};
+		
+		for(int i = 0; i < animals.length; i++) {
+			animals[i].speak();
+		}
+		
+		Animal myCow = new Cow();
+		myCow.eat();
+		
+		Animal myDog = new Dog();
+		myDog.eat();
+		
+	}
+	
+	public static void accessModifiers() {
+		
+		//check song.java
+		
+		Song holiday = new Song("Holiday", "Green Day", 300); //if song constructor in song.java is private cannot access here
+		holiday.playSong();
+		
 	}
 	
 }

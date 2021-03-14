@@ -1,11 +1,22 @@
 
 public class Student {
-	String firstName;
-	String lastName;
+	String name;
 	double gpa;
 	String major;
-	int age;
-	boolean onProbation;
+	
+	public Student(String name, String major, double gpa) {
+		this.name = name;
+		this.gpa = gpa;
+		this.major = major;
+	}
+	
+	public boolean isOnHonorRoll() {
+		if(this.gpa >= 3.5) {
+			
+			return true;
+		}
+		return false;
+	}
 }
 	
 	
