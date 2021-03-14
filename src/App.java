@@ -1,18 +1,26 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
 	public static void main(String [] args) {
 		
-		Scanner keyboardInput = new Scanner(System.in);
-		System.out.print("Enter a number: ");
-		try{
-			double num = keyboardInput.nextDouble();
-			System.out.println(num);
-		} catch(Exception e) {
-			System.out.println("Invalid Input");
-		}
+		Book book1 = new Book();
+		book1.title = "Harry Potter";
+		book1.author = "JK Rowling";
+		book1.pages = 500;
+		book1.language = "English";
 		
+		Book book2 = new Book();
+		book2.title = "The 4 hour workweek";
+		book2.author = "Tim Ferriss";
+		book2.pages = 200 ;
+		book2.language = "English";
+		
+		
+		System.out.println(book1.title);
+		System.out.println(book2.pages);
 	}
+		
 
 
 	public static void helloWorld() {
@@ -388,6 +396,65 @@ public class App {
 			}
 			System.out.println();
 		}
+	}
+	
+	public static void errorExceptions() {
+		//Exception is just general issues like wrong user input
+		//Error is something seriously wrong with the program 
+		
+		Scanner keyboardInput = new Scanner(System.in);
+		/*
+		Boolean loopBoolean = true;
+		//Loop to continue asking
+		
+		while(loopBoolean){
+			System.out.print("Enter a number: ");
+			try{
+				double num = keyboardInput.nextDouble();
+				System.out.println(num);
+				loopBoolean = false;
+				
+			} catch(Exception e) {
+				
+			}
+		}
+		*/
+		//int [] nums = {1,2,3};
+		try {
+			//System.out.println( nums[5] );
+			double num = keyboardInput.nextDouble();
+			System.out.println(num);
+		} catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println(e); //e is the exception name
+		} catch(InputMismatchException e) {
+			System.out.println("Invalid Input");
+		} catch(Exception e) {
+			// can be Throwable e or Error e
+			//Throwable is any error or any exception
+			
+		}
+	}
+	
+	
+	
+	public static void studentClass() {
+		Student myStudent = new Student();
+		myStudent.firstName = "Jim";
+		myStudent.lastName = "Halpert";
+		myStudent.major = "Business";
+		myStudent.gpa = 2.3;
+		myStudent.age = 25;
+		myStudent.onProbation = false;
+		
+		Student myStudent2 = new Student();
+		myStudent2.firstName = "Pam";
+		myStudent2.lastName = "Beasley";
+		myStudent2.major = "Art";
+		myStudent2.gpa = 3.0;
+		myStudent2.age = 22;
+		myStudent2.onProbation = true;
+		
+		System.out.println(myStudent2.firstName);
 	}
 	
 }
